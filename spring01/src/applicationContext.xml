@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--  bean 的属性：配置作用域:scope="prototype"(原型：多个对象) 和scope="singleton"默认作用域，同一个对象 -->
+    <bean id="userDao" class="com.spring.dao.Impl.UserDaoImpl">
+        <!-- collaborators and configuration for this bean go here -->
+    </bean>
+     
+     <!-- 依赖注入1  构造方法注入 -->
+    <bean id="userService" class="com.spring.service.dao.Impl.UserServiceImpl">
+     <!--构造方法注入：      index：位置  ref:引用：注入哪个对象-->
+    <constructor-arg index="0" ref="userDao"/>
+    </bean>
+           
+      <!-- 依赖注入2 set方法注入 -->
+      <bean id="userService2" class="com.spring.service.dao.Impl.UserServiceImpl2">
+      
+     <property name="userDao" ref="userDao"></property>
+    </bean>
+
+
+</beans>
